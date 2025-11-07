@@ -327,6 +327,14 @@ void BitcoinGUI::createActions()
     historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
     tabGroup->addAction(historyAction);
 
+    pointOfSaleAction = new QAction(platformStyle->SingleColorIcon(":/icons/receiving_addresses"), tr("&Point of Sale"), this);
+    pointOfSaleAction->setStatusTip(tr("Manage products and services for accepting payments"));
+    pointOfSaleAction->setToolTip(pointOfSaleAction->statusTip());
+    pointOfSaleAction->setCheckable(true);
+    pointOfSaleAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
+    pointOfSaleAction->setVisible(false); // Hidden by default, shown when enabled
+    tabGroup->addAction(pointOfSaleAction);
+
 #ifdef ENABLE_WALLET
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
     // can be triggered from the tray menu, and need to show the GUI to be useful.
@@ -342,6 +350,8 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsMenuAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
+    connect(pointOfSaleAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(pointOfSaleAction, SIGNAL(triggered()), this, SLOT(gotoPointOfSalePage()));
 #endif // ENABLE_WALLET
 
     quitAction = new QAction(platformStyle->TextColorIcon(":/icons/quit"), tr("E&xit"), this);
@@ -484,6 +494,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
+        toolbar->addAction(pointOfSaleAction); // Will be hidden by default
         overviewAction->setChecked(true);
     }
 }
@@ -529,6 +540,12 @@ void BitcoinGUI::setClientModel(ClientModel *_clientModel)
         
             // initialize the disable state of the tray icon with the current value in the model.
             setTrayIconVisible(optionsModel->getHideTrayIcon());
+            
+            // be aware of the Point of Sale setting change
+            connect(optionsModel, SIGNAL(pointOfSaleChanged(bool)), this, SLOT(setPointOfSaleVisible(bool)));
+            
+            // initialize the visibility of the Point of Sale action with the current value in the model.
+            setPointOfSaleVisible(optionsModel->getPointOfSale());
         }
     } else {
         // Disable possibility to show main window via action
@@ -583,6 +600,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     receiveCoinsAction->setEnabled(enabled);
     receiveCoinsMenuAction->setEnabled(enabled);
     historyAction->setEnabled(enabled);
+    pointOfSaleAction->setEnabled(enabled);
     encryptWalletAction->setEnabled(enabled);
     backupWalletAction->setEnabled(enabled);
     changePassphraseAction->setEnabled(enabled);
@@ -712,6 +730,12 @@ void BitcoinGUI::gotoHistoryPage()
 {
     historyAction->setChecked(true);
     if (walletFrame) walletFrame->gotoHistoryPage();
+}
+
+void BitcoinGUI::gotoPointOfSalePage()
+{
+    pointOfSaleAction->setChecked(true);
+    if (walletFrame) walletFrame->gotoPointOfSalePage();
 }
 
 void BitcoinGUI::gotoReceiveCoinsPage()
@@ -1171,6 +1195,14 @@ void BitcoinGUI::setTrayIconVisible(bool fHideTrayIcon)
     if (trayIcon)
     {
         trayIcon->setVisible(!fHideTrayIcon);
+    }
+}
+
+void BitcoinGUI::setPointOfSaleVisible(bool fPointOfSale)
+{
+    if (pointOfSaleAction)
+    {
+        pointOfSaleAction->setVisible(fPointOfSale);
     }
 }
 

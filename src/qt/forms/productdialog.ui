@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProductDialog</class>
+ <widget class="QDialog" name="ProductDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>450</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Product</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="categoryLabel">
+     <property name="text">
+      <string>Category:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="categoryComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="nameLabel">
+     <property name="text">
+      <string>Product Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="nameLineEdit"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="descriptionLabel">
+     <property name="text">
+      <string>Description:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="descriptionPlainTextEdit"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="imageLabel">
+     <property name="text">
+      <string>Image Path:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="imageLayout">
+     <item>
+      <widget class="QLineEdit" name="imagePathLineEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="browseImageButton">
+       <property name="text">
+        <string>Browse...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="quantityLayout">
+     <item>
+      <widget class="QLabel" name="quantityLabel">
+       <property name="text">
+        <string>Quantity:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="unlimitedCheckBox">
+       <property name="text">
+        <string>Unlimited</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="quantitySpinBox">
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>999999</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="priceLayout">
+     <item>
+      <widget class="QLabel" name="priceLabel">
+       <property name="text">
+        <string>Price (DOGE):</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="priceSpinBox">
+       <property name="decimals">
+        <number>8</number>
+       </property>
+       <property name="minimum">
+        <double>0.00000001</double>
+       </property>
+       <property name="maximum">
+        <double>999999999.00000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="buttonLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>ProductDialog</receiver>
+   <slot>accept()</slot>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ProductDialog</receiver>
+   <slot>reject()</slot>
+  </connection>
+  <connection>
+   <sender>browseImageButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ProductDialog</receiver>
+   <slot>onBrowseImage()</slot>
+  </connection>
+ </connections>
+</ui>
+

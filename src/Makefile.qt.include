@@ -85,6 +85,9 @@ QT_FORMS_UI = \
   qt/forms/optionsdialog.ui \
   qt/forms/overviewpage.ui \
   qt/forms/paperwalletdialog.ui \
+  qt/forms/pointofsalepage.ui \
+  qt/forms/productcategorydialog.ui \
+  qt/forms/productdialog.ui \
   qt/forms/receivecoinsdialog.ui \
   qt/forms/receiverequestdialog.ui \
   qt/forms/debugwindow.ui \
@@ -122,6 +125,11 @@ QT_MOC_CPP = \
   qt/moc_overviewpage.cpp \
   qt/moc_peertablemodel.cpp \
   qt/moc_paymentserver.cpp \
+  qt/moc_pointofsalepage.cpp \
+  qt/moc_pointofsaledb.cpp \
+  qt/moc_pointofsalewebserver.cpp \
+  qt/moc_productcategorydialog.cpp \
+  qt/moc_productdialog.cpp \
   qt/moc_qvalidatedlineedit.cpp \
   qt/moc_qvaluecombobox.cpp \
   qt/moc_receivecoinsdialog.cpp \
@@ -192,6 +200,11 @@ BITCOIN_QT_H = \
   qt/paymentserver.h \
   qt/peertablemodel.h \
   qt/platformstyle.h \
+  qt/pointofsalepage.h \
+  qt/pointofsaledb.h \
+  qt/pointofsalewebserver.h \
+  qt/productcategorydialog.h \
+  qt/productdialog.h \
   qt/qvalidatedlineedit.h \
   qt/qvaluecombobox.h \
   qt/receivecoinsdialog.h \
@@ -317,6 +330,11 @@ BITCOIN_QT_WALLET_CPP = \
   qt/openuridialog.cpp \
   qt/overviewpage.cpp \
   qt/paymentserver.cpp \
+  qt/pointofsalepage.cpp \
+  qt/pointofsaledb.cpp \
+  qt/pointofsalewebserver.cpp \
+  qt/productcategorydialog.cpp \
+  qt/productdialog.cpp \
   qt/receivecoinsdialog.cpp \
   qt/receiverequestdialog.cpp \
   qt/recentrequeststablemodel.cpp \

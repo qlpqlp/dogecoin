@@ -181,6 +181,16 @@
         </layout>
        </item>
        <item>
+        <widget class="QCheckBox" name="pointOfSale">
+         <property name="toolTip">
+          <string>Enable Point of Sale mode to manage products and services for accepting Dogecoin payments</string>
+         </property>
+         <property name="text">
+          <string>Point of &amp;Sale</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_Main">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

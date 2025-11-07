@@ -107,6 +107,7 @@ private:
     QAction *aboutAction;
     QAction *receiveCoinsAction;
     QAction *receiveCoinsMenuAction;
+    QAction *pointOfSaleAction;
     QAction *optionsAction;
     QAction *toggleHideAction;
     QAction *encryptWalletAction;
@@ -200,6 +201,8 @@ private Q_SLOTS:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+    /** Switch to point of sale page */
+    void gotoPointOfSalePage();
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
@@ -241,6 +244,9 @@ private Q_SLOTS:
     
     /** When hideTrayIcon setting is changed in OptionsModel hide or show the icon accordingly. */
     void setTrayIconVisible(bool);
+
+    /** When pointOfSale setting is changed in OptionsModel hide or show the action accordingly. */
+    void setPointOfSaleVisible(bool);
 
     /** Toggle networking */
     void toggleNetworkActive();

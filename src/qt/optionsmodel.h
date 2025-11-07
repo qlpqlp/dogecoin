@@ -49,6 +49,7 @@ public:
         DatabaseCache,          // int
         SpendZeroConfChange,    // bool
         Listen,                 // bool
+        PointOfSale,            // bool
         OptionIDRowCount,
     };
 
@@ -69,6 +70,7 @@ public:
     QString getThirdPartyTxUrls() { return strThirdPartyTxUrls; }
     bool getProxySettings(QNetworkProxy& proxy) const;
     bool getCoinControlFeatures() { return fCoinControlFeatures; }
+    bool getPointOfSale() { return fPointOfSale; }
     const QString& getOverriddenByCommandLine() { return strOverriddenByCommandLine; }
 
     /* Restart flag helper */
@@ -84,6 +86,7 @@ private:
     int nDisplayUnit;
     QString strThirdPartyTxUrls;
     bool fCoinControlFeatures;
+    bool fPointOfSale;
     /* settings that were overridden by command-line */
     QString strOverriddenByCommandLine;
 
@@ -96,6 +99,7 @@ Q_SIGNALS:
     void displayUnitChanged(int unit);
     void coinControlFeaturesChanged(bool);
     void hideTrayIconChanged(bool);
+    void pointOfSaleChanged(bool);
 };
 
 #endif // BITCOIN_QT_OPTIONSMODEL_H

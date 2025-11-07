@@ -14,6 +14,7 @@ class BitcoinGUI;
 class ClientModel;
 class OverviewPage;
 class PlatformStyle;
+class PointOfSalePage;
 class ReceiveCoinsDialog;
 class SendCoinsDialog;
 class SendCoinsRecipient;
@@ -64,6 +65,7 @@ private:
     QWidget *transactionsPage;
     ReceiveCoinsDialog *receiveCoinsPage;
     SendCoinsDialog *sendCoinsPage;
+    PointOfSalePage *pointOfSalePage;
     AddressBookPage *usedSendingAddressesPage;
     AddressBookPage *usedReceivingAddressesPage;
     ImportKeysDialog *importKeysDialog;
@@ -78,6 +80,8 @@ public Q_SLOTS:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
+    /** Switch to point of sale page */
+    void gotoPointOfSalePage();
     /** Switch to import keys dialog */
     void gotoImportKeysDialog();
     /** Switch to receive coins page */

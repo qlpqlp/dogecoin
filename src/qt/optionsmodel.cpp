@@ -82,6 +82,10 @@ void OptionsModel::Init(bool resetSettings)
         settings.setValue("fCoinControlFeatures", false);
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
+    if (!settings.contains("fPointOfSale"))
+        settings.setValue("fPointOfSale", false);
+    fPointOfSale = settings.value("fPointOfSale", false).toBool();
+
     // These are shared with the core or have a command-line parameter
     // and we want command-line parameters to overwrite the GUI settings.
     //
@@ -262,6 +266,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return settings.value("nThreadsScriptVerif");
         case Listen:
             return settings.value("fListen");
+        case PointOfSale:
+            return fPointOfSale;
         default:
             return QVariant();
         }
@@ -421,6 +427,11 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
                 settings.setValue("fListen", value);
                 setRestartRequired(true);
             }
+            break;
+        case PointOfSale:
+            fPointOfSale = value.toBool();
+            settings.setValue("fPointOfSale", fPointOfSale);
+            Q_EMIT pointOfSaleChanged(fPointOfSale);
             break;
         default:
             break;

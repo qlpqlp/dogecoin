@@ -83,13 +83,27 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason, const bool witnes
         // future-proofing. That's also enough to spend a 20-of-20
         // CHECKMULTISIG scriptPubKey, though such a scriptPubKey is not
         // considered standard.
-        if (txin.scriptSig.size() > 1650) {
+        if (txin.scriptSig.size() > MAX_SCRIPT_SIG_DATACARRIER) {
             reason = "scriptsig-size";
             return false;
         }
         if (!txin.scriptSig.IsPushOnly()) {
             reason = "scriptsig-not-pushonly";
             return false;
+        }
+        
+        // Check for scriptSig data carrier if enabled
+        if (fAcceptDatacarrierSig) {
+            // Look for data carrier patterns in scriptSig
+            // This is a policy check, not a consensus check
+            if (txin.scriptSig.size() > 0) {
+                // Check if scriptSig contains data carrier pattern
+                // This is a simplified check - you may want to add more sophisticated pattern matching
+                if (txin.scriptSig.size() > MAX_OP_RETURN_RELAY) {
+                    reason = "scriptsig-datacarrier";
+                    return false;
+                }
+            }
         }
     }
 
